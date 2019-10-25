@@ -4,7 +4,11 @@ import React from 'react';
 function Navigation(props) {
     return (
         <nav className="navbar navbar-dark bg-dark">
-            <a className="nav-link text-white" href="#">{props.title}</a>
+            <a className="nav-link text-white" href="#">{props.title[0]}
+               <span className="badge badge-pill badge-light ml-2">
+                {props.title[1].length}
+               </span>
+            </a>
         </nav>
     );
 }

@@ -1,5 +1,4 @@
 /* utilizando clase */
-
 /*
 import React, {Component} from 'react';
 import logo from './logo.svg';
@@ -37,7 +36,13 @@ class App extends Component {
         });
         return(
             <div className="App">
-                <Navigation title='Option1'/>
+                <nav className="navbar navbar-dark bg-dark">
+                    <a className="nav-link text-white" href="#">Tasks
+                        <span className="badge badge-pill badge-light ml-2">
+                           {this.state.tools.length}
+                        </span>
+                    </a>
+                </nav>
                 <header className="App-header">
                     <div className="container">
                         <div className="row mt-4">
@@ -56,7 +61,6 @@ export default App;
 
 /* utilizando funcion */
 
-
 import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
@@ -65,6 +69,7 @@ import { tools } from './json/data';
 
 function App() {
   const [count, setCount] = useState(tools);
+  const navigat = ['Option1', count];
   const todos = count.map((count, i)=>{
     return (
         <div className="col-md-4">
@@ -85,7 +90,7 @@ function App() {
   });
     return (
     <div className="App">
-      <Navigation title='Option1'/>
+      <Navigation title={navigat}/>
       <header className="App-header">
           <div className="container">
               <div className="row mt-4">
