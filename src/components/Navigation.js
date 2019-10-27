@@ -1,12 +1,13 @@
 /* utilizando funcion */
+
 import React from 'react';
 
 function Navigation(props) {
     return (
         <nav className="navbar navbar-dark bg-dark">
-            <a className="nav-link text-white" href="#">{props.title[0]}
+            <a className="nav-link text-white" href="#">{props.value[0]}
                <span className="badge badge-pill badge-light ml-2">
-                {props.title[1].length}
+                {props.value[1].length}
                </span>
             </a>
         </nav>
@@ -22,7 +23,11 @@ class Navigation extends Component{
   render() {
       return (
           <nav className="navbar navbar-dark bg-dark">
-            <a className="nav-link text-white" href="#">{this.props.title}</a>
+            <a className="nav-link text-white" href="#">{this.props.value[0]}
+            <span className="badge badge-pill badge-light ml-2">
+                {this.props.value[1].length}
+               </span>
+            </a>
           </nav>
       )
   }

@@ -1,9 +1,66 @@
+/* utilizando funcion */
+
+import React, {useState} from 'react';
+import logo from './logo.svg';
+import './App.css';
+import Navigation from './components/Navigation';
+import FormTask from './components/FormTask';
+import { tools } from './json/data';
+
+function App() {
+  const [count, setCount] = useState(tools);
+  const navigat = ['Option1', count];
+  function handleAdd(data){
+    setCount([...count,data])
+  }
+  const todos = count.map((count, i)=>{
+    return (
+        <div className="col-md-4">
+          <div className="card mt-4">
+            <div className="card-header">
+              <h3>{count.title}</h3>
+              <span className="badge badge-pill badge-danger ml-2">
+                  {count.priority}
+              </span>
+            </div>
+            <div className="card-body">
+              <p>{count.description}</p>
+              <p><mark>{count.responsible}</mark></p>
+            </div>
+          </div>
+        </div>
+    )
+  });
+    return (
+    <div className="App">
+      <Navigation value={navigat}/>
+      <header className="App-header">
+          <div className="container">
+              <div className="row mt-4">
+                <div className="col-md-3">
+                  <FormTask onAddTools={handleAdd}/>
+                </div>
+                <div className="col-md-9">
+                  <div className="row">
+                    {todos}
+                  </div>
+                </div>
+              </div>
+          </div>
+        <img src={logo} className="App-logo" alt="logo" />
+      </header>
+    </div>
+  );
+}
+
+export default App;
+
 /* utilizando clase */
 /*
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Navigation from './components/navigation';
+import FormTask from './components/FormTask';
 import { tools } from './json/data';
 
 console.log(tools);
@@ -14,6 +71,12 @@ class App extends Component {
         this.state = {
             tools
         }
+        this.handleAdd = this.handleAdd.bind(this);
+    }
+    handleAdd(data){
+      this.setState({
+        tools: [...this.state.tools, data]
+      })
     }
     render(){
         const todos = this.state.tools.map((tool, i)=>{
@@ -46,8 +109,15 @@ class App extends Component {
                 <header className="App-header">
                     <div className="container">
                         <div className="row mt-4">
-                            {todos}
+                        <div className="col-md-3">
+                          <FormTask onAddTools={this.handleAdd}/>
                         </div>
+                        <div className="col-md-9">
+                          <div className="row">
+                            {todos}
+                          </div>
+                        </div>
+                       </div>
                     </div>
                     <img src={logo} className="App-logo" alt="logo" />
                 </header>
@@ -58,49 +128,3 @@ class App extends Component {
 
 export default App;
 */
-
-/* utilizando funcion */
-
-import React, {useState} from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Navigation from './components/navigation';
-import { tools } from './json/data';
-
-function App() {
-  const [count, setCount] = useState(tools);
-  const navigat = ['Option1', count];
-  const todos = count.map((count, i)=>{
-    return (
-        <div className="col-md-4">
-          <div className="card mt-4">
-            <div className="card-header">
-              <h3>{count.title}</h3>
-              <span className="badge badge-pill badge-danger ml-2">
-                  {count.priority}
-              </span>
-            </div>
-            <div className="card-body">
-              <p>{count.description}</p>
-              <p><mark>{count.responsible}</mark></p>
-            </div>
-          </div>
-        </div>
-    )
-  });
-    return (
-    <div className="App">
-      <Navigation title={navigat}/>
-      <header className="App-header">
-          <div className="container">
-              <div className="row mt-4">
-                  {todos}
-              </div>
-          </div>
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
-    </div>
-  );
-}
-
-export default App;
