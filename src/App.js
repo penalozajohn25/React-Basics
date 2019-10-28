@@ -95,6 +95,15 @@ class App extends Component {
         tools: [...this.state.tools, data]
       })
     }
+    handleRemove(index){
+     if(window.confirm('are you sure you want to delete it?')) {
+         this.setState({
+             tools : this.state.tools.filter((e, i)=>{
+                 return i !== index;
+             })
+         });
+       }
+    }
     render(){
         const todos = this.state.tools.map((tool, i)=>{
             return (
@@ -110,6 +119,13 @@ class App extends Component {
                   <p>{tool.description}</p>
                   <p><mark>{tool.responsible}</mark></p>
                 </div>
+                  <div className="card-footer">
+                      <button
+                      className="btn btn-danger"
+                      onClick={this.handleRemove.bind(this, i)}>
+                          Remove
+                      </button>
+                  </div>
               </div>
             </div>
             )
