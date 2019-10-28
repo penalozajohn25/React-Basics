@@ -2,9 +2,7 @@
 
 import React, {useState} from 'react';
 function FormTask(props) {
-
     function handleInput(e){
-        console.log(e.target.value, e.target.name);
         const {value, name} = e.target;
         setCount({
           ...count,

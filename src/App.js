@@ -13,6 +13,15 @@ function App() {
   function handleAdd(data){
     setCount([...count,data])
   }
+  function handleRemove(index){
+    if(window.confirm('are you sure you want to delete it?')){
+      setCount(
+        count.filter((e,i) =>{
+          return i !== index
+        })
+      )
+    }
+  }
   const todos = count.map((count, i)=>{
     return (
         <div className="col-md-4">
@@ -26,6 +35,14 @@ function App() {
             <div className="card-body">
               <p>{count.description}</p>
               <p><mark>{count.responsible}</mark></p>
+            </div>
+            <div className="card-footer">
+                <button
+                className="btn btn-danger"
+                onClick={handleRemove.bind(this,i)}
+                >
+                  Remove
+                </button>
             </div>
           </div>
         </div>
